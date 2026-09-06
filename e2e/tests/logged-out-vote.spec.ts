@@ -6,11 +6,12 @@ test.describe("Logged-out voting", () => {
     gotoOnce,
     feed,
   }) => {
-    // known bug (findings F1), flips red when fixed
-    test.fail(true, "F1: logged-out upvote is a silent no-op (no sign-in prompt)");
-
     await gotoOnce("/");
     await feed.waitForToday();
+
+    // known bug (findings F1), flips red when fixed. Set after the page loads so
+    // a Cloudflare block on the way in still fails properly.
+    test.fail(true, "F1: logged-out upvote is a silent no-op (no sign-in prompt)");
 
     const vote = feed.todayCards.first().locator(SELECTORS.voteButton);
     const before = (await vote.innerText()).trim();
