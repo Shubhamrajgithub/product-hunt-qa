@@ -141,7 +141,9 @@ dependent on those IdPs. The account recovery story is worth a look.
 loads in one browser context (403, `__cf_chl` in the URL). The WAF returns 403 for
 `<img src=x onerror=…>` in the search query, and harmless payloads are echoed as text, not HTML. These are strong
 controls. The cost is that any synthetic monitoring has to use a fresh context per navigation, which is
-how the E2E suite is built.
+how the E2E suite is built. GitHub-hosted Actions runners are blocked outright, first load included, so
+the E2E job can't gate the build there without a self-hosted runner or an allow-listed IP. The fixture
+names this explicitly so it never gets mistaken for a product bug.
 
 **S8 — Web security headers.** `X-Frame-Options: SAMEORIGIN` and `X-Content-Type-Options: nosniff` are
 present. There is no `Content-Security-Policy` at all. HSTS is `max-age=2592000` (30 days) with
