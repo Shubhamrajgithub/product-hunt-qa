@@ -1,0 +1,21 @@
+{
+  "name": "product-hunt-qa",
+  "version": "1.0.0",
+  "description": "QA test strategy, exploratory/security findings, and automated test suites (Playwright E2E + Bun API) for Product Hunt — take-home assignment.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "token": "bun scripts/get-token.ts",
+    "test:api": "bun test api/tests",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:all": "bun run test:api && bun run test:e2e",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/bun": "latest",
+    "typescript": "^5.6.0"
+  }
+}
