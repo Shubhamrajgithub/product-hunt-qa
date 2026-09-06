@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   typecheck:
@@ -33,9 +34,12 @@ jobs:
           PH_ACCESS_TOKEN: ${{ secrets.PH_ACCESS_TOKEN }}
 
   e2e-tests:
-    name: E2E Tests (Playwright)
+    # Cloudflare blocks GitHub-hosted runner IPs outright, so this job is
+    # informational here. Run locally or on a self-hosted runner. See README.
+    name: E2E Tests (Playwright, non-blocking on hosted runners)
     runs-on: ubuntu-latest
     needs: typecheck
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
