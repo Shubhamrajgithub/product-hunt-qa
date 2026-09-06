@@ -50,6 +50,7 @@ vs the documented mutation list, CSP and HSTS, whether tracking waits for consen
   context gets challenged after two or three navigations. A fresh context's first load was reliable
   every time, so each test loads once via a `gotoOnce` fixture and then moves client-side. The fixture
   fails with a clear "Cloudflare challenge" message so an infra block is never misread as a product bug.
+  GitHub-hosted runners are blocked entirely, so E2E is non-blocking in CI until there's a self-hosted runner.
 - **Known bugs stay visible.** A confirmed bug becomes `test.fail()` with the finding number, not
   `test.skip()`. CI is green while the bug exists and goes red the day it's fixed.
 - **Read-only against production.** The one mutation in the suite is sent without a token to prove
